@@ -1,0 +1,58 @@
+When implementing a Microservice architecture the amount and scale of services can become a big burden when it comes to coupling the services.
+If hooking services together implies to manually put IP addresses into config files the scalability of the system is going to be fairly limited.
+Instead the system should propose its capabilities and discover other services automatically.
+
+The used implementation starts as a set of bash scripts updating etcd (a distributed key/value store). This KV store was used by SkyDNS, which exposes entries
+over a DNS interface and thus, made the coupeling of distributed services relatively easy. To dynamically create configuration files a tool called confd emerged, which consumes
+etcd and produces configuration files from templates if a watched value changes.
+
+A more holistic tool to deal with this set of functionalities is Consul. It combies a Key/Value store, service checks, a DNS interface and an RESTful API
+in one golang binary which is easy to manage.
+
+A service is described in the JSON format and provides attributes of the service and checks to determine the state of the service based on the return code of the script (like NAGIOS does).
+
+\begin{lstlisting}[language=bash,
+    caption={Service definition within consul.},
+    label={lst:srv_json}]
+{
+  "service": {
+    "name": "nginx",
+    "port": 80,
+    "check": {
+      "script": "nmap 127.0.0.1 -p80|grep open",
+      "interval": "10s"
+    }
+  }
+}
+\end{lstlisting}
+
+If the check indicates the service is usable, the service is exposed via an DNS interface.
+Thus the service can be reached via \gls{fqdn}.
+\begin{lstlisting}[language=bash,
+    caption={Exposure of services via DNS.},
+    label={lst:dig_nginx}]
+$ dig SRV +short nginx.service.consul
+1 1 80 nginx.node.qnib.consul.
+\end{lstlisting}
+
+In addition a RESTful API serves the internal information as JSON blobs.
+
+\begin{lstlisting}[language=bash,
+    caption={Exposure of services via RESTful API.},
+    label={lst:curl_nginx}]
+$ export URL=localhost:8500/v1/catalog/service
+$ curl -s $URL/nginx|python -m json.tool
+[
+    {
+        "Address": "172.17.0.6",
+        "Node": "nginx",
+        "ServiceAddress": "",
+        "ServiceID": "nginx",
+        "ServiceName": "nginx",
+        "ServicePort": 80,
+        "ServiceTags": null
+    }
+]
+\end{lstlisting}
+
+As service discovery at scale is crutial to the success of combining services Consul provides a suitable setup to do so (rephrase!).

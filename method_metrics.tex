@@ -1,0 +1,41 @@
+\subsubsection{Metrics Engine}
+The first pillar of the open framework is the metric engine ecosystem Graphite, which captures performance values over time. 
+First released in 20xx it provides a modular system to consume, process, store and access metric information in the form 'key value timestamp'.
+
+The metrics are persisted in round-robin databases called whisper by a set of daemons called 'carbon'.
+
+\begin{lstlisting}[language=bash,
+    caption={Sending and receiving metrics using carbon in combination with a whisper file backend.},
+    label={lst:carbon_wsp}]
+$ for x in {1..5};do
+> echo "test.metric ${x} $(date +%s)" |\
+    nc -w 1 127.0.0.1 2003
+> sleep 5
+> done
+$ export CDIR=/var/lib/carbon/whisper
+$ whisper-fetch $CDIR/test/metric.wsp |\
+    grep -v None
+1438513460	1.000000
+1438513465	2.000000
+1438513470	3.000000
+1438513475	4.000000
+1438513480	5.000000
+$
+\end{lstlisting}
+
+The graphite framework provides a rich ecosystem of visualisations, plugins, metric sources and alternative daemon implementation to fit almost
+all usecases around metrics gathering, processing, storing and serving metrics. Due to its open-source development and defined API missing pieces
+can be added if needed.
+
+This enables each part of the infrastructure layer to submit it's metrics. Even application developers can just start sending metrics down the pipeline and
+let them pop up at the access layer.
+
+- Metric Key Scheme
+
+If the group of metric generators grows to a certain complexity the metrics keys becoming a problem, since naming schemes vary depending on the context of
+the producer. An engineer overseeing the network in a datacenter might organise his metrics hierchical ($datacenter01.rack01.compute01.eth0.send\_bytes$), while from the
+resource scheduler perspective a grouping per job ($jobid01.compute01.send\_bytes$) is a scheme which might fit the use-case best.
+
+To overcome this issue a scheme should be choosen which describes the metric in a deterministic and unique way. This ID is then logicaly structured according to the use-case.
+The concept behind Metrics 2.0 e.g. adds metadata (stored in an elasticsearch index) to each unique identifable key, which allows for context based searches.
+

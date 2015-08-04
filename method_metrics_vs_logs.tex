@@ -1,0 +1,12 @@
+Unlike metrics, which are datapoints associated in a time series (most are repetitive, like system performance infomration)
+fashion, log data is a distinct event. Granted, the line is a bit blurry and some events include metric data that
+might be extracted in a subsequent step. NAGIOS e.g. provides performance information with most of the alarm events to enrich the event.
+
+In an ideal world this two would be separated pieces of information in which a metric does not provide context
+but pure destilled performance information in the form of a value connected to a metric key and timestamped.
+
+A log event would be pure context without any performance information (e.g. 'Cronjob to sync video data started by User bob'). 
+
+In practise the producer of an event is most likely to cross this line, since the past favored an enriched (human readable/understandable) event over a
+pure piece feed into the correlation engines of today. But today this line gets redrawn; in times were big data is a hype topic for the last couple
+of years, the quality/clearity/focus of incomming data matters.

@@ -1,0 +1,44 @@
+% Placing the paper in the context of the discourse community and the field in general. Larger issue and debates are named
+% and potentially problematised. In naming the location the writer is creating a warrant for their contribution and its 
+% significances, as well as informing an international community of its relevance outside of its specific place of origin
+%%%
+% identified an issue and suggested that it is problematic and, by inference, that we have a different view.
+% sometimes the locate work, e.g. will be more descriptive and sometimes more argumentative
+% ..<topic>. is now a significant issue.. because...
+%%%%%%%%%%%% what to put in
+% Motivation
+A datacenter is comprised of a varity of different layers. From the physical hardware, support facilities (e.g. cooling) up to end-user applications.
+Some of them are complex in themselfs, yet every more ofter debugging a layer is impossible without taking information from connected part of the infrastructure into account.
+
+One example is the interconnect (like InfiniBand, but also commodity ethernet), which provides communication between multiple
+entities. A view into the layer itself provides information about data flows (bandwith, latency) and errors on a switch and end-node basis.
+
+As an system operator this angle might look apealing, but without a context in which the data flows occur the metrics are almost rendered useless, because
+the correlation with information from other layers is put onto the shoulders of the operator.
+He has to switch different tools with different User Interfaces and aspects to solve inter-layer problems.
+% Model Switch and Transformation
+\subsection{Model Descrapancy}
+One aspect why the correlation of inter-layer information is such a hard task is psychological one. Over time a human operator forms a mental model
+of the system under his supervision. If information is received from somewhere, be it a an event that occured or performance metrics, this information
+has to be mapped into the mental model which has been build so far.
+The human is served best by a given tool if the tools model and his mental model is completly aligned.
+E.g. a hierachical stracture is displayed as a graph instead of a set of unconnected nodes. This might be one reason why NotInventedHere
+is so popular among in the integration field (speculative).
+
+
+% Interdisciplinary, open framework
+This gets even worse in the complete infrastruture, since a varity of layers has to be covered, worst-case with different models even for common entities.
+The network model only deals with host channel adapters and does not consider the actual host in his model (as InfiniBand does) in contrast to a resource
+scheduler like SLURM which only cares about host. Even this closly related topics which are easly fit in a mental model is hard to align in practise.
+An even harder challenge is to model a commodity ethernet network and align it with a special purpose interconnect like InfiniBand.
+This leads to mostly distinct tools and even operational teams for different techniques within the IT infrastructure.
+
+\subsection{Commoditisation Problem}
+While commoditisation and specialisation of hard and software was one of the drivers to lower cost and the entry barrier it introduce an increase in layer count and
+independent parts within each layer. The task to create an inter-layer framework became even harder and only tools like \gls{nagios} provided some insight.
+The financial incentive to create an overarching framework which allows to mix, match and correlate information from different aspects is quite low, since the component vendors
+do not benefit much from providing hooks to all tools out there.
+
+\subsection{Open Framework}
+To overcome this problem this work proposes an open framework embedded into a microservice architecture. The implementation aims for decoupled back-end, middle ware and front-end.
+Insipred by the metrics ecosystem graphite, which had this idea baked into the core from the begining.

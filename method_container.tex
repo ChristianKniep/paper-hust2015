@@ -1,0 +1,25 @@
+Linux Container leaverage Kernel Namespaces to isolate different groups of processes. Unlike hypervisor virtualisation, which emulates
+the hardware of a physical computer, Linux Containers are spawning processes with certain flags, attaching the process (and its childs)
+to a set of namespaces. Within the Linux Kernel namespaces exist to encapsulate processes, mount points, network stacks,
+inter-process communication and domain information. Furthermore a container can be granted only a subset of kernel capabilities.
+
+A common way to restrict the use of resources (CPU, memory, I/O) available by a running container is the use of \gls{cgrp}.
+
+\subsubsection{Docker}
+The Linux Container engine that took off within the last couple of month and lead the rise of Linux Container as a commodity technology, accessible
+for a broad range of user is Docker (former dotCloud). It provides a easy and intuitive way to build, distribute and run container images.
+By developing Docker in the open and providing an API, Docker Inc. gained a lot of momentum and surrounded Docker with a rich ecosystem.
+
+Linux Containers are a perfect fit for a microservice architecture. They do not spin up a complete operating system but only the process
+neccessary for the service and therefore minimize the overhead. Furthermore Linux Containers are start and stopped within a
+fraction of a second, which provides a proactive elasticity needed to be agile (rephrase me!).
+
+As a recent article at 'The Register' pointed out, one could argue that virtual machines are best suited to serve monolithic applications,
+which assume an uninterupted operation. If the underlying hardware is failing the virtual machine gets migrated to a different host. Idealy just
+with a slight hiccup while the network address is transferred. The application itself is designed to life a long and protected life.
+
+In the microservice architecture dealing with failure is a crutial part of the design itself. A system should have single points of failure and
+should self-heal if a service fails. How many (and which) concurrent errors a system can withstand depends on the effort put into it and might differ
+in certain stages of the development, but the ideal goal is a self-healing system.
+
+

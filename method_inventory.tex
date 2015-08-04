@@ -1,0 +1,11 @@
+\subsection{Traditional Approach}
+Existing inventory systems face a twofold problem. First they are mostly designed by one paricular layer of the infrastrucure cake.
+This burdens certain constraints to the model of the system, which are hard to overcome. A holistic approach is very rare, some might
+provide a global character, but most likely as an historicaly grown extension.
+
+The second problem comes down to the technique used. Most systems use some sort of Rational Database, which has a tendency to normalise
+the schemas involved to eliminate redundant information. Once a schema is set up, it is hard to shoehorn other aspects of the datacenter into
+the established schema formed by the first consideration.
+
+To overcome this, the system should backed by a graph database, which allows a schema-free model to evolve over time. Different aspects
+use different models. Inter-layer dependencies are modeled by connecting the related nodes. This allows a rich query to span accros multiple layers.
