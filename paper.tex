@@ -1,0 +1,92 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% writeLaTeX Example: Academic Paper Template
+%
+% Source: http://www.writelatex.com
+% 
+% Feel free to distribute this example, but please keep the referral
+% to writelatex.com
+% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% How to use writeLaTeX: 
+%
+% You edit the source code here on the left, and the preview on the
+% right shows you the result within a few seconds.
+%
+% Bookmark this page and share the URL with your co-authors. They can
+% edit at the same time!
+%
+% You can upload figures, bibliographies, custom classes and
+% styles using the files menu.
+%
+% If you're new to LaTeX, the wikibook is a great place to start:
+% http://en.wikibooks.org/wiki/LaTeX
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass[twocolumn,showpacs,%
+  nofootinbib,aps,superscriptaddress,%
+  eqsecnum,prd,notitlepage,showkeys,10pt]{revtex4-1}
+
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{dcolumn}
+\usepackage{xcolor}
+\usepackage{marvosym}
+\usepackage{url}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{epigraph}
+
+\definecolor{mygray}{rgb}{0.85,0.85,0.85}
+ 
+\lstset{basicstyle=\ttfamily,
+  showstringspaces=false,
+  captionpos=b,
+  backgroundcolor=\color{mygray},
+  basicstyle=\footnotesize,
+  commentstyle=\color{red},
+  keywordstyle=\color{blue}
+}
+\usepackage[style=long,acronym,toc]{glossaries}
+\usepackage{hyperref}
+\hypersetup{
+     colorlinks   = false,
+     citecolor    = gray
+}
+\input{glossary.tex}
+
+\usepackage[printonlyused]{acronym}
+
+
+\begin{document}
+
+\title{QNIBMon - an open and holistic framework to combine metric data, log events and inventory data.}
+\author{Christian Kniep}
+\affiliation{QNIB Solutions}
+
+\input{abstract.tex}
+
+\maketitle
+
+
+\section{Introduction}
+\input{intro.tex}
+
+\section{Method}
+\input{method.tex}
+
+\input{results.tex}
+
+\input{future_work.tex}
+
+\input{conclusion.tex}
+
+%\section{Glossary}
+%\glsaddall
+%\printglossaries
+
+
+\input{acknowledgments.tex}
+
+
+\end{document}
