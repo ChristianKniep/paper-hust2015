@@ -37,15 +37,26 @@
 \usepackage{listings}
 \usepackage{epigraph}
 
+
 \definecolor{mygray}{rgb}{0.85,0.85,0.85}
  
 \lstset{basicstyle=\ttfamily,
   showstringspaces=false,
-  captionpos=b,
   backgroundcolor=\color{mygray},
   basicstyle=\footnotesize,
-  commentstyle=\color{red},
-  keywordstyle=\color{blue}
+  %commentstyle=\color{red},
+  keywordstyle=\color{blue},
+  captionpos=b,
+  language=bash,
+  basicstyle=\small\sffamily,
+  numbers=left,
+  numberstyle=\tiny,
+  numbersep=3pt,
+  frame=tb,
+  columns=fullflexible,
+  backgroundcolor=\color{gray!10},
+  linewidth=0.9\linewidth,
+  xleftmargin=0.1\linewidth
 }
 \usepackage[style=long,acronym,toc]{glossaries}
 \usepackage{hyperref}
