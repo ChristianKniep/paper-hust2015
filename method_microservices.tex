@@ -1,12 +1,13 @@
-The origin of this work was coming from the need to run a complete HPC cluster stack in a virtualised fashion on a single laptop.
+The motivation behind this work dates back to the urge to run a complete HPC cluster stack in a visualized fashion on a single laptop in order to be able to gain a better understanding of how a HPC software stack interacts.
+This first attempt was presented during the \gls{osdc} (\glsdesc{osdc}) 
 All services were put into a single machine, which only served an environment needed to run the certain service.
-Without calling it Microservices the idea behind it was quite similar with the approach Microservices are accociated with.
-One of the most quoted definition of the term Microservices is served by Adrian Cockcroft:
-\epigraph{Microservices is defined as a loosely coupled service oriented architecture with bounded context}{\textit{Adrian Cockcroft}}
-In practise the emerging pattern is that small team get full ownership of a paricular service (bounded context).
-How the service is implemented is of no interest to the clients (most likely microservices themselfes) of this service.
+Without calling it Micro-services the idea behind it was quite similar with the approach Micro-services are associated with.
+One of the most quoted definition of the term Micro-services is served by Adrian Cockcroft:
+\epigraph{Micro-services is defined as a loosely coupled service oriented architecture with bounded context}{\textit{Adrian Cockcroft}}
+In practice the emerging pattern is that small team get full ownership of a particular service (bounded context).
+How the service is implemented is of no interest to the clients (most likely micro-services themselves) of this service.
 The interaction is strictly defined by a contract. A common protocol to provide this interaction is a RESTful API based on HTTP and JSON.
 
-A litmus test of such an architecture is an update of services. 'Loosley coupled' should lead to a solution in which an update of one service
+A litmus test of such an architecture is an update of services. 'Loosely coupled' should lead to a solution in which an update of one service
 should not enforce an update to services using the API. If this test is passed successfully the system provides
 independent update cycles for each service, without breaking the current system as a whole.
