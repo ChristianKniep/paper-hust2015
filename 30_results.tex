@@ -6,10 +6,10 @@ By using a schema-less graph database approach, each domain can be modeled indep
 they are modeled.
 
 \subsubsection{Resource Scheduler}
-\gls{slurm} provides information about resource allocations: Which jobs was started where, by whom at what time. How long did it last? What was the outcome? and alike.
+\gls{slurm} provides information about resource allocations: Which jobs was started where, by whom at what time? How long did it last? What was the outcome? and alike.
 The following \gls{slurm} entities are modeled as nodes within the graph.
 \begin{itemize}
-    \item \textbf{host} The SLURM node, which represents a compute node within the cluster, identified by the host-name.
+    \item \textbf{host} The \gls{slurm} node, which represents a compute node within the cluster, identified by the host-name.
     \item \textbf{partition} A logical group of nodes which represent the target of a job submission.
     \item \textbf{job} A demand for resources submitted by a user. Including metadata (user, submission/start/end time, job script, etc) and information about the state of the job. If resources are allocated, the job metadata is updated accordingly.
 \end{itemize}
@@ -34,26 +34,26 @@ Relationships combine two \lstinline{PORTS} and a \lstinline{CABLE} alongside wi
 Furthermore the routing information is added by providing a \lstinline{ROUTE_TO} relationship between a port and a host.
 
 \subsection{Holistic Inventory}
-The presented two models alone provide combined insight into the cluster. By connecting the HCA (within the InfiniBand model) to a host (within the SLURM model) the inventory allows inter-layer queries.
+The presented two models alone provide combined insight into the cluster. By connecting the HCA (within the InfiniBand model) to a host (within the \gls{slurm} model) the inventory allows inter-layer queries.
 
 \subsubsection{Job Placements}
-By showing the layout of a job within the \gls{ib} topology, a imbalanced job is easily detectable. \autoref{fig:hop_mis} shows an example in which the hop-count within a job differs.
+By showing the layout of a job within the \gls{ib} topology, an imbalanced job is easily detectable. \autoref{fig:hop_mis} shows an example in which the hop-count within a job differs.
 \begin{figure}[!ht]
     \includegraphics[width=.4\textwidth]{images/png/hop_missmatch.png}
     \caption{\label{fig:hop_mis}A job runs on three nodes (green). By using \lstinline{node3} instead of \lstinline{node4} the job could run evenly distributed on \lstinline{sw1}}
 \end{figure}
-An slightly more complex case would include different port-characteristics like speed, width.
-By caching information of the metrics system within the ports a even more sophisticated query might include error or performance counters.
+A slightly more complex case would include different port-characteristics like speed, width.
+By caching information of the metrics system within the ports an even more sophisticated query might include error or performance counters.
 
 \subsubsection{InfiniBand Debugging}
-A common debug case within InfiniBand network is to figure out if errors associated with a connection is caused by one of the ports or the cable itself.
+A common debug case within InfiniBand network is to figure out if errors associated with a connection are caused by one of the ports or the cable itself.
 The approach to fix this error is to carefully unplug one connector of a given cable, connect it to a different switch-port and check the error counters of the just established connection.
 If the error sticks with the cable the opposite side of the cable has to be changed as well, to truly pin down the problem.
 
 This process is extremely error prone; an inventory to deal with an InfiniBand fabric barely exists. Therefore each step is manual labor with the risk of miscommunication between the on-site engineer changing the
 cables and the engineer matching the changes to performance counter changes.
 
-By using an holistic inventory the changes are tracked automatically and since they include the timestamps the correlation with the metrics systems is trivial.
+By using an holistic inventory (as indicated in \autoref{fig:ib_graph}) the changes are tracked automatically and since they include the timestamps the correlation with the metrics systems is trivial.
 
 \subsection{Open Log and Metric Framework}
 Determining inter-layer error triggers is an extremely hard task. If e.g. a specific job triggers an error within the interconnects one has to keep track of the job placement, the routes within the interconnect and

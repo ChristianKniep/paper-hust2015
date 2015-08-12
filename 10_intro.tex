@@ -18,10 +18,10 @@ the correlation with information from other layers is put onto the shoulders of 
 He has to switch different tools with different User Interfaces and aspects to solve inter-layer problems.
 % Model Switch and Transformation
 \subsection{Model Discrepancy}
-One aspect why the correlation of inter-layer information is such a hard task is psychological one. Over time a human operator forms a mental model
-of the system under his supervision. If information is received from somewhere, be it a an event that occurred or performance metrics, this information
+One aspect why the correlation of inter-layer information is such a hard task is a psychological one. Over time a human operator forms a mental model
+of the system under his supervision. If information is received from somewhere, be it an event that occurred or performance metrics, this information
 has to be mapped into the mental model which has been build so far.
-The human is served best by a given tool if the tools model and his mental model is completely aligned.
+The human is served best by a given tool, if the tools model and his mental model is completely aligned.
 E.g. a hierarchical structure is displayed as a graph instead of a set of unconnected nodes.
 This might be one reason why it is very common to recreate existing tooling around infrastructure projects (Not-Invented-Here syndrome), even though the underlying problem
 is shared and equal among a broad spectrum of people. The driver seems to be that each system engineer has a slightly different model and prefers to build something from scratch.
@@ -30,16 +30,16 @@ is shared and equal among a broad spectrum of people. The driver seems to be tha
 % Interdisciplinary, open framework
 This gets even worse in the complete infrastructure, since a variety of layers has to be covered, worst-case with different models even for common entities.
 The network model only deals with host channel adapters and does not consider the actual host in his model (as InfiniBand does) in contrast to a resource
-scheduler like SLURM which only cares about host. Even this closely related topics which are easily fit in a mental model is hard to align in practice.
+scheduler like \gls{slurm} (\glsdesc{slurm}) which only cares about hosts. Even this closely related topics, which are easily fit in a mental model, are hard to align in practice.
 An even harder challenge is to model a commodity Ethernet network and align it with a special purpose interconnect like InfiniBand.
 This leads to mostly distinct tools and even operational teams for different techniques within the IT infrastructure.
 
 \subsection{Commoditization Problem}
-While commoditization and specialization of hard and software was one of the drivers to lower cost and the entry barrier it introduce an increase in layer count and
+While commoditization and specialization of hard- and software was one of the drivers to lower cost and the entry barrier to technology, it introduce an increase in layer count and
 independent parts within each layer. The task to create an inter-layer framework became even harder and only tools like \gls{nagios} provided some insight.
 The financial incentive to create an overarching framework which allows to mix, match and correlate information from different aspects is quite low, since the component vendors
 do not benefit much from providing hooks to all tools out there.
 
 \subsection{Open Framework}
-To overcome this problem this work proposes an open framework embedded into a micro-service architecture. The implementation aims for decoupled back-end, middle ware and front-end.
-Inspired by the metrics ecosystem graphite, which had this idea baked into the core from the beginning.
+To overcome this problem this work proposes an open framework embedded into a microservice architecture. The implementation aims for decoupled back-end, middle ware and front-end.
+Inspired by the metrics ecosystem Graphite, which had this idea baked into the core from the beginning.
