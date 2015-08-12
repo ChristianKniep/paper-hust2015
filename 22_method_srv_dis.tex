@@ -1,15 +1,15 @@
-When implementing a Micro-service architecture the amount and scale of services can become a big burden when it comes to coupling the services.
-If hooking services together implies to manually put IP addresses into config files the scalability of the system is going to be fairly limited.
+When implementing a microservice architecture the amount and scale of services can become a big burden when it comes to coupling the services.
+If hooking services together implies manual labor to put IP addresses into config files, the scalability of the system is going to be fairly limited.
 Instead the system should propose its capabilities and discover other services automatically.
 
-The used implementation starts as a set of bash scripts updating etcd (a distributed key/value store). This KV store was used by SkyDNS, which exposes entries
+The used implementation starts as a set of bash scripts updating etcd (a distributed key/value store). This key/valiue store was used by SkyDNS\footnote{\Mundus~\url{https://github.com/skynetservices/skydns1}}, which exposes entries
 over a DNS interface and thus, made the coupling of distributed services relatively easy. To dynamically create configuration files a tool called confd emerged, which consumes
 etcd and produces configuration files from templates if a watched value changes.
 
-A more holistic tool to deal with this set of functionality is Consul. It combines a Key/Value store, service checks, a DNS interface and an RESTful API
-in one golang binary which is easy to manage.
+A more holistic tool to deal with this set of functionality is Consul. It combines a key/value store, service checks, a DNS interface and an RESTful API
+in one golang binary, which is easy to manage.
 
-\autoref{lst:srv_json} describes a service including attributes and checks to determine the state of the service based on the return code of the script (like NAGIOS does). 
+\autoref{lst:srv_json} describes a service, including attributes and checks to determine the state of the service based on the return code of the script (like NAGIOS does). 
 
 \begin{lstlisting}[language=bash,
     caption={Service definition within consul. If the keyword open is not find within the nmap output the service is marked WARNING},
@@ -36,7 +36,7 @@ $ dig SRV +short nginx.service.consul
 1 1 80 nginx.node.qnib.consul.
 \end{lstlisting}
 
-To be able to reference a service via DNS is extremely helpful, since name resolving works system-wide. Instead of statically configuring an IP address
+The ablility to reference a service via DNS is extremely helpful, since name resolving works system-wide. Instead of static IP address,
 configuration holds the \gls{fqdn} to describe a dependency to a different node. Furthermore the complete tooling is going to work as well; checking network connectivity is as
 simple as \lstinline{pinging} the \gls{fqdn}.
 

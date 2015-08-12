@@ -1,8 +1,8 @@
-\subsubsection{Log Pipeline}
+\subsection{Log Pipeline}
 In the past Log engines like \gls{splunk} (\glsdesc{splunk}) were high priced data consumers, which proposed to help deal with the
-flow of incoming unstructured data. Without such framework is was very hard to normalize all the data to make use of it.
+flow of incoming unstructured data. Without such framework it was very hard to normalize all the data and make use of the information gathered.
 
-In the last couple of years a couple of open-source variants of such tools emerged. The most prominent is \gls{logstash}, followed by \gls{graylog} (\glsdesc{graylog}).
+In the last couple of years open-source variants of such tools emerged. The most prominent is \gls{logstash}, followed by \gls{graylog} (\glsdesc{graylog}).
 They provide a modular pipeline, which allows to take data from different inputs, normalize it (common sense in some JSON-style format)
 and alter the information on the way through. Among others the data is then persisted in a data-store, e.g. in \gls{elasticsearch} (\glsdesc{elasticsearch}).
 Both ecosystems provide visualization tools and connectors to a rich ecosystem.
