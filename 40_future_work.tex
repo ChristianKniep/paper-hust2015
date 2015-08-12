@@ -1,1 +1,19 @@
 \section{Future Work}
+
+The coupling of metrics, log events and inventory data is still an area which is researched and therefore it is not battletested.
+
+\subsection{Data Back-end}
+When talking to different camps within the space it seems that each backend is a good fit to cover all needs.
+Elastic personel once said, it save to store metric information in ELasticsearch, InfluxDB stores events and so on.
+
+In the future the right balance, back-end and connectivity has to be found.
+
+\subsection{Metrics 2.0}
+Aligning the metrics2.0 concept to allow tighter and more specific reference of tags might help connect information.
+Tags might implicitly describe to which data-point (inventory or event) they are referring to.
+
+\subsection{Inventory Model}
+More domain models have to be included into the Inventory system to gain more experience in regards of possible friction points and limitation to this approach.
+
+\subsection{Scale Test}
+The use of this framework is so far limited to small clusters and a laptop. How well it is going to scale and what the limitations are is to be discovered.
