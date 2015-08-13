@@ -1,4 +1,4 @@
-\section{Results}
+\section{Correlating InfiniBand and SLURM}
 By combining the presented technology stacks, the framework provides deep insights into the complete cluster stack.
 
 \subsection{Domain Modeling}
@@ -23,7 +23,7 @@ An InfiniBand representation comprises of a set of physical and logical represen
 \end{figure}
 
 \begin{itemize}
-    \item \textbf{HCA} Network adapter plugged into a host/
+    \item \textbf{HCA} Network adapter plugged into a host
     \item \textbf{SW} InfiniBand switch
     \item \textbf{PORT} Each \lstinline{HCA} and \lstinline{SW} are composed of a set of ports which provide connectivity.
     \item \textbf{CABLE} Physical connection between different ports.
@@ -46,7 +46,7 @@ A slightly more complex case would include different port-characteristics like s
 By caching information of the metrics system within the ports an even more sophisticated query might include error or performance counters.
 
 \subsubsection{InfiniBand Debugging}
-A common debug case within InfiniBand network is to figure out if errors associated with a connection are caused by one of the ports or the cable itself.
+A common debug case within the InfiniBand network is to figure out if errors associated with a connection are caused by one of the ports or the cable itself.
 The approach to fix this error is to carefully unplug one connector of a given cable, connect it to a different switch-port and check the error counters of the just established connection.
 If the error sticks with the cable the opposite side of the cable has to be changed as well, to truly pin down the problem.
 

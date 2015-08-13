@@ -1,9 +1,10 @@
-\subsection{Log Pipeline}
+\subsubsection{Log Pipeline}
 In the past Log engines like \gls{splunk} (\glsdesc{splunk}) were high priced data consumers, which proposed to help deal with the
-flow of incoming unstructured data. Without such framework it was very hard to normalize all the data and make use of the information gathered.
+flow of incoming unstructured data. Without such a framework it was very hard to normalize all the data and make use of the information gathered.
 
-In the last couple of years open-source variants of such tools emerged. The most prominent is \gls{logstash}, followed by \gls{graylog} (\glsdesc{graylog}).
-They provide a modular pipeline, which allows to take data from different inputs, normalize it (common sense in some JSON-style format)
+In the last couple of years open-source tools emerged. The most prominent is \gls{logstash} (\glsdesc{logstash}),
+followed by \gls{graylog} (\glsdesc{graylog}).
+They provide a modular pipeline, which allows to take data from different inputs, normalize it (commonly in some JSON-style format)
 and alter the information on the way through. Among others the data is then persisted in a data-store, e.g. in \gls{elasticsearch} (\glsdesc{elasticsearch}).
 Both ecosystems provide visualization tools and connectors to a rich ecosystem.
 
@@ -27,6 +28,6 @@ output {
 }
 \end{lstlisting}
 
-The power of these pipelines lies in the flexibility they provide. With a couple of lines of configuration the logs are centralized and accessible
-via a intuitive dashboard like never before. Compared to plain text files on each server itself this changes the way logs are correlated with each other.
+The power of these pipelines lies in the flexibility they provide. With a couple of lines (an example is shown in \autoref{lst:ls_cfg}) of
+configuration the logs are centralized and accessible via an intuitive dashboard like \gls{kibana}\glsdesc{kibana} as they were never before. Compared to plain text files on each server itself this changes the way logs are correlated with each other.
 
