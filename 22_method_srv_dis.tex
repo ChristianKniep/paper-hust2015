@@ -33,7 +33,7 @@ Thus the service can be reached via the \gls{fqdn} (\glsdesc{fqdn}) \lstinline{<
     caption={Exposure of services via DNS.},
     label={lst:dig_nginx}]
 $ dig SRV +short nginx.service.consul
-1 1 80 nginx.node.qnib.consul.
+1 1 80 nginx.node.consul.
 \end{lstlisting}
 
 The ablility to reference a service via DNS is extremely helpful, since name resolving works system-wide. Instead of static IP address,
@@ -61,4 +61,4 @@ $ curl -s $URL/nginx|python -m json.tool
 \end{lstlisting}
 This provides the ability to use this information in external scripts or use the rich ecosystem that has already build up around service discovery.
 
-Since QNIBMon aims to be modular and flexible in its composition, a service discovery mechanism which is able to dynamically update itself is crucial to the success of the framework.
+Since this work aims to be modular and flexible in its composition, a service discovery mechanism which is able to dynamically update itself is crucial to the success of the framework.
