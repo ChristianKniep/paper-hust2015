@@ -1,14 +1,16 @@
 \begin{abstract}
 The IT infrastructure (no matter the size) is composed of multiple layers, supplied by different commercial vendors as well
-as more and more open-source project. This increasing complexity needs to be addressed by defining a common sense framework
-to consume, process and explore the data produced by any part of the system; no matter if it is metrics data, event information and inventory data.
+as more and more open-source projects. This increasing complexity needs to be addressed by defining a common sense framework
+to consume, process and explore the data produced by any part of the system; no matter if it is metrics data, event information or inventory data.
 
-The innovation cycle is becoming faster and faster and thus the need to integrate new services need to keep pace.
+The innovation cycle is becoming faster and faster and thus the integration of new services has to keep up to speed. Long integration cycles
+are going to be a handicap in a competitive changing world.
 
 In this paper a system is introduced, which serves as an open framework to consume, process, store and make use of
-bit and pieces of information originating from each layer of the infrastructure stack.
-The framework utilizes Docker as a foundation of a microservice architecture and makes use of the best-of-breed open-source technologies
-such as \gls{graphite} (\glsdesc{graphite}), \gls{logstash} (\glsdesc{logstash}) and \gls{neo4j} (\glsdesc{neo4j}).
-This approach provides an inter-layer methodology which allows connections between subsystems like network, software inventory and resource scheduler to
-assist in complex analysis.
+bits and pieces of information originating from each infrastructure layer.
+The framework uses Docker as a foundation of a microservice architecture and integrates the best-of-breed open-source technologies
+such as \gls{graphite}, \gls{logstash} and \gls{neo4j}.
+This approach provides an inter-layer methodology which allows connections between subsystems like network,
+software inventory and resource scheduler to assist in complex analysis of problems and performance, for example by correlating Infiniband
+performance metrics with job-related information obtained from SLURM.
 \end{abstract}
