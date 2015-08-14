@@ -1,18 +1,21 @@
-\glspl{lc}\glsdesc{lc} leverage Kernel Namespaces to isolate different groups of processes. Unlike hypervisor visualization, which emulates
-the hardware of a physical computer, \glspl{lc} are spawning processes with certain flags, attaching the process (and its children's processes)
+The current wave of OS-level virtualization leverage Kernel Namespaces to isolate different groups of processes. Unlike hypervisor visualization, which emulates
+the hardware of a physical computer, OS-level virtualization are spawning processes with certain flags, attaching the process (and its children's processes)
 to a set of namespaces. The Linux Kernel provides Kernel Namespaces to encapsulate processes, mount points, network stacks,
 inter-process communication and domain information. Furthermore a container can be granted only a subset of kernel capabilities.
 
 A common way to restrict the use of resources (CPU, memory, I/O) available by a running container is the use of \gls{cgrp} (\glsdesc{cgrp}).
 
-\subsubsection{Docker}
-The \gls{lc} implementation that took off within the last couple of months is Docker. It leads the rise of \glspl{lc} as a commodity technology, accessible
-for a broad range of users. It provides an easy and intuitive way to build, distribute and run container images.
-By developing Docker in the open and providing an API, Docker gained a lot of momentum and surrounded Docker with a rich ecosystem.
+\subsubsection{Linux Containers}
+An early contender to OS-level virtualization FreeBSD `jails', Solaris `Zones' and \gls{lc}. They never gained much momentum, since they had operational limitations are were a bit cumbersome to use.
 
 \glspl{lc} are a perfect fit for a microservice architecture. They do not spin up a complete operating system but only the process
 necessary for the service and therefore minimize the overhead. Furthermore \glspl{lc} are started and stopped within a
 fraction of a second, which provides a proactive elasticity needed to be agile.
+
+\subsubsection{Docker}
+The \gls{lc} implementation that took off within the last couple of months is Docker. It leads the rise of \glspl{lc} as a commodity technology, accessible
+for a broad range of users. It provides an easy and intuitive way to build, distribute and run container images.
+By developing Docker in the open and providing an API, Docker gained a lot of momentum and surrounded Docker with a rich ecosystem.
 
 \subsubsection{Containers versus Virtual Machines}
 One could argue that virtual machines are best suited to serve monolithic applications,

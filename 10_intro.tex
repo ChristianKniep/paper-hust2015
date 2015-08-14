@@ -7,42 +7,41 @@
 % ..<topic>. is now a significant issue.. because...
 %%%%%%%%%%%% what to put in
 % Motivation
-A data-center is comprised of a variety of different layers. From the physical hardware, support facilities (e.g. cooling), up to end-user applications.
-Some of them are complex in themselves, and often debugging a particular layer is impossible without taking information from connected parts
-of the infrastructure into account.
+A data-center is comprised of a variety of different layers. From physical hardware and support facilities (e.g. cooling), up to end-user applications.
+Some of them are complex in themselves, and often debugging a particular layer is impossible without taking the entire infrastructure into account.
 
 One example is the network interconnect, which provides communication between multiple entities.
-A view into the layer itself provides information about data flows (bandwidth, latency) and errors on a switch and end-node basis.
+A view into the layer itself provides information about data flows (bandwidth, latency) and errors reported on a switch and end-node basis.
 
-As a system operator this angle might look appealing, but without a context in which the data flows occur, the metrics are almost rendered useless,
-because the correlation with information from other layers is put onto the shoulders of the operator.
-He/she has to switch different tools with different User Interfaces and aspects to solve inter-layer problems.
+As a system operator this angle may look appealing, but without the context in which data flows occur, the metrics are almost rendered useless,
+because the correlation of information from other layers is put onto the shoulders of the operator.
+He/she has to switch different tools with different user interfaces to solve inter-layer problems.
 % Model Switch and Transformation
 \subsection{Model Discrepancy}
 One aspect why the correlation of inter-layer information is such a hard task is a psychological one. Over time a human operator forms a mental model
 of the system under his/her supervision. If information is received from somewhere, be it an event that occurred or performance metrics, this information
 has to be mapped into the mental model which has been build so far.
-The human is served best by a given tool, if the tool's model and his/her mental model is perfectly aligned.
-E.g. a hierarchical structure is better displayed as a graph rather then a set of unconnected nodes.
-This might be one reason why it is very common to recreate existing tooling around infrastructure projects
+The human is best served by a given tool if the tool's model and his/her mental model is perfectly aligned,
+e.g. a hierarchical structure is better displayed as a graph rather then a set of unconnected nodes.
+This may be one reason why it is very common to recreate existing tooling around infrastructure projects
 (Not-Invented-Here syndrome\footnote{Investigating the Not Invented Here syndrome, 1982, R. Katz}), even though the underlying problem
 is shared and equal among a broad spectrum of people. The driver seems to be that each system engineer has a slightly different mental
 model and prefers to build something from scratch.
 
 
 % Interdisciplinary, open framework
-This gets even worse in the complete infrastructure, since a variety of layers has to be covered, worst-case with different models even for common entities.
+This problem gets even worse take the entire infrastructure into account, since a variety of layers has to be covered, worst-case with different models even for common entities.
 The network model only deals with host channel adapters and does not consider the actual host (as InfiniBand does, the dominant high-speed interconnect in HPC systems) in contrast to a resource
 scheduler like \gls{slurm} (\glsdesc{slurm}) which only cares about hosts. Even these closely related topics, which are easily fitted
 in a mental model, are hard to align in practice. An even harder challenge is to model a commodity Ethernet network and align it with a special purpose interconnect like InfiniBand.
 This leads to mostly distinct tools (even operational teams) for different techniques within the IT infrastructure.
 
 \subsection{Commoditization Problem}
-While commoditization and specialization of hard- and software was one of the drivers to lower cost and the entry barrier to technology, it
+While commoditization and specialization of hard- and software was one of the drivers to lower costs and the barrier to entry technology, it
 introduces an increase in layer count and
 independent parts within each layer. The task to create an inter-layer framework became even harder and only monitoring tools like \gls{nagios} (\glsdesc{nagios}) provided some insight.
 The financial incentive to create an overarching framework which allows to mix, match and correlate information from different aspects is quite low, since the component vendors
-do not benefit much from providing hooks to all tools out there.
+do not benefit much from providing hooks to all the almost infinite amount of tools available.
 
 \subsection{Open, Holistic Framework}
 To overcome this problem this work proposes an open framework embedded into a microservice architecture. The implementation aims for decoupled back-end, middle ware and front-end,
