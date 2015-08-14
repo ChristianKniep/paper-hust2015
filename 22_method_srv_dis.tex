@@ -1,13 +1,13 @@
-When implementing a microservice architecture the amount and scale of services can become a big burden when it comes to coupling the services.
+When implementing a microservice architecture the amount and scale of services can become a big burden when it comes to connecting the services.
 If hooking services together implies manual labor to put IP addresses into configuration files, the scalability of the system is going to be fairly limited.
-Instead, the system should broadcast its capabilities and discover other services automatically.
+Instead, the system should broadcast its capabilities and discover required services automatically.
 
-The used implementation started as a set of bash scripts updating \gls{etcd} (\glsdesc{etcd}).
+The initial implementation started as a set of bash scripts updating \gls{etcd} (\glsdesc{etcd}).
 This key/value store was used by \gls{skydns} (\glsdesc{skydns}), which exposes entries
 over a DNS interface and thus made the coupling of distributed services relatively easy. To dynamically create configuration files a tool called
 \gls{confd} (\glsdesc{confd}) emerged, which queries \gls{etcd} and produces configuration files from templates if a watched value changes.
 
-A more holistic tool to deal with this set of functionality is \gls{consul} (\glsdesc{consul}). It combines a key/value store, service checks,
+A more holistic tool to deal with this functionality is \gls{consul} (\glsdesc{consul}). It combines a key/value store, service checks,
 a DNS interface and an RESTful API.
 
 \autoref{lst:srv_json} shows an example of a service, including attributes and checks to determine the state of the service based on the return code of the script (like NAGIOS does). 
