@@ -1,15 +1,9 @@
 - the OpenSM section should be made a little bit more general, with OpenSM as a good example of how it should be done?
 Maybe entitled "The importance of (good) APIs"?
-- you never mention what 'kopf' is? or 'grafana'?
-- Figure 4 isn't really readable; what kind of job info is used to annotate the graph with? maybe give a concrete example? and what part of the framework you propose is supporting this?
-- what's "Elastic personnel"? Fantastic 4? :P
-
+    
 [conclusion]
 
 - the conclusion should probably be fleshed out a bit more, to give it more oompfh; people typically check the abstract & conclusion first,
 to see if the paper is worth reading; you should also mention the use case of correlating info between IB & SLURM,
 since that would get people's attention imho
 
-
-metrics_vs_logs
-- should II.E and II.F be subsections of II.D? the titles suggest they should be
