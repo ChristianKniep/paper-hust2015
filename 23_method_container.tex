@@ -1,5 +1,5 @@
-The current wave of OS-level virtualization leverage Kernel Namespaces to isolate different groups of processes. Unlike hypervisor visualization, which emulates
-the hardware of a physical computer, OS-level virtualization are spawning processes with certain flags, attaching the process (and its children's processes)
+The current wave of OS-level virtualization leverage Kernel Namespaces \footnote{\Mundus~\url{http://man7.org/linux/man-pages/man7/namespaces.7.html}} to isolate different groups of processes. Unlike hypervisor virtualization, which emulates
+the hardware of a physical computer, OS-level virtualization spawns processes with certain flags, attaching the process (and its children's processes)
 to a set of namespaces. The Linux Kernel provides Kernel Namespaces to encapsulate processes, mount points, network stacks,
 inter-process communication and domain information. Furthermore a container can be granted only a subset of kernel capabilities.
 
