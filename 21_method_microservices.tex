@@ -9,7 +9,7 @@ In practice the emerging pattern is that small teams get full ownership of a par
 How the service is implemented is of no interest to the clients (most likely microservices themselves) of this service.
 The interaction is strictly defined by a contract. A common protocol to provide this interaction is a RESTful API based on HTTP and JSON.
 
-A litmus test of such an architecture is an update of services. `Loosely coupled` should lead to a solution in which an update of one service
+A litmus test of such an architecture is an update of services. `Loosely coupled' should lead to a solution in which an update of one service
 should not enforce an update to services using the API. If this test is passed successfully the system provides
 independent update cycles for each service, without breaking the current system as a whole.
 

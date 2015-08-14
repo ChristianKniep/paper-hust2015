@@ -5,12 +5,11 @@ flow of incoming unstructured data. Without such a framework it was very hard to
 In the last couple of years open-source tools emerged. The most prominent is \gls{logstash} (\glsdesc{logstash}),
 followed by \gls{graylog} (\glsdesc{graylog}).
 They provide a modular pipeline, which allows to take data from different inputs, normalize it (commonly in some JSON-style format)
-and alter the information on the way through. Among others the data is then persisted in a data-store, e.g. in \gls{elasticsearch} (\glsdesc{elasticsearch}).
+and alter the information on the way through. Among others the data is then persisted in a data-store, e.g. in \gls{elasticsearch} (\glsdesc{elasticsearch}, see Section~\ref{elasticsearch}).
 Both ecosystems provide visualization tools and connectors to a rich ecosystem.
 
 \begin{lstlisting}[language=bash,label={lst:ls_cfg},
-    caption={Basic Logstash configuration which consumes events via syslog endpoint, adds a tag and writes events to stdout.}]
-
+    caption={Example of a basic Logstash configuration which consumes events via syslog endpoint, adds a tag and writes events to stdout.}]
 input {
     syslog {
         port => 5514
@@ -29,9 +28,10 @@ output {
 \end{lstlisting}
 
 The power of these pipelines lies in the flexibility they provide. With a couple of lines (an example is shown in \autoref{lst:ls_cfg}) of
-configuration the logs are centralized and accessible via an intuitive dashboard like \gls{kibana} (\glsdesc{kibana}) as they were never before. Compared to plain text files on each server itself this takes the accessibility of log event information to another level.
+configuration the logs are centralized and accessible via an intuitive dashboard like \gls{kibana} (\glsdesc{kibana}, see Section~\ref{kibana}) as they were never before. Compared to plain text files on each server itself this takes the accessibility of log event information to another level.
 
 \subsubsection{Elasticsearch}
+\label{elasticsearch}
 Storing text in a way that allows fast searches is a complex task. Elasticsearch tackles that by pre-processing data while it is consumed by its engine.
 This process is called indexing and it splits the information in various ways to speed up the search.
 Elasticsearch consumes JSON formatted data and adds additional fields if needed.
@@ -43,6 +43,10 @@ Elasticsearch provides fast an easy access to data.
 
 \subsubsection{Kibana}
 \label{kibana}
-Kibana is an open-source javascript framework to visualize data stored in \gls{elasticsearch}.
+Kibana is an open-source javascript framework to visualize data stored in \gls{elasticsearch} (an example is shown in \autoref{fig:kibana_overview}).
+\begin{figure}[!ht]
+    \includegraphics[width=.4\textwidth]{images/png/kibana_overview.png}
+    \caption{\label{fig:kibana_overview}Example of a plain visualization of log events issued by syslog and send to Elasticsearch via Logstash.}
+\end{figure}
 This open source project is backed by Elastic\footnote{\Mundus~\url{https://www.elastic.co}}, the company behind Elasticsearch and integrates
 seamlessly with their datastore.

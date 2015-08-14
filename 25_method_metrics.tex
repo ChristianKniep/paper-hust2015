@@ -1,13 +1,13 @@
 \subsubsection{Metrics Engine}
 \label{metricsengine}
-The first pillar of the open framework is the ecosystem \gls{graphite} (\glsdesc{graphite}), which captures performance values over time. 
-Started in 2006 it provides a modular system to consume, process, store and access metric information in the form 'key value time-stamp'.
+The core of the open framework is the ecosystem \gls{graphite} (\glsdesc{graphite}), which captures performance values over time. 
+Started in 2006 it provides a modular system to consume, process, store and access metric information in the form \texttt{key value timestamp}.
 
-The metrics are persisted in round-robin databases called whisper by a set of daemons called `carbon`.
+The metrics are persisted in round-robin databases using the \texttt{whisper} format by a set of daemons called \texttt{carbon}.
 \autoref{lst:carbon_wsp} shows an example of how performance metrics are processed and stored.
 
 \begin{lstlisting}[language=bash,
-    caption={Sending and receiving metrics using carbon in combination with a whisper file back-end.},
+    caption={Sending metric strings \texttt{test.metric <value> <timestamp>} via \texttt{netcat} (short \texttt{nc}) to the carbon daemon (port \texttt{2003}). Afterward reading the \texttt{timestamp, value} pairs for the specific \texttt{whisper} file.},
     label={lst:carbon_wsp}]
 $ for x in {1..5};do
 > echo "test.metric ${x} $(date +%s)" |\
@@ -25,12 +25,17 @@ $ whisper-fetch $CDIR/test/metric.wsp |\
 $
 \end{lstlisting}
 
-The \gls{graphite} framework provides a rich ecosystem of visualizations, plugins, metric sources and alternative daemon implementation to fit almost
+The \gls{graphite} framework provides a rich ecosystem of visualizations (the default metrics WebUI is shown in \autoref{fig:graphite_web}, plugins, metric sources and alternative daemon implementation to fit almost
 all use-cases around metrics gathering, processing, storing and serving. Due to its open-source development and stable API, missing pieces
 can be added if needed.
 
+\begin{figure}[!ht]
+    \includegraphics[width=.4\textwidth]{images/png/graphite_web.png}
+    \caption{\label{fig:graphite_web}Example of a plain visualization of metrics using the default WebUI which is provided by the \gls{graphite} ecosystem from the beginning.}
+\end{figure}
+
 This enables each part of the infrastructure layer to submit metrics without much effort. Even application developers can just start sending metrics down the pipeline and
-let them pop up at the access layer.
+trust that the metrics will be available at the user interface once they are processed.
 
 \subsubsection{Metric Key Scheme}
 
@@ -39,7 +44,7 @@ the producer. An engineer overseeing the network in a data-center might organize
 resource scheduler perspective a grouping per job (\lstinline{jobid01.compute01.send_bytes}) is a scheme which might fit the use-case best.
 
 To overcome this issue a scheme should be chosen which abstracts from a metric key as single string.
-The Metrics2.0\footnote{\Mundus~\url{http://metrics20.org/}} idea (an example is shown in \autoref{lst:metrics20}) annotate metrics with metadata.
+The Metrics2.0\footnote{\Mundus~\url{http://metrics20.org/}} idea (an example is shown in \autoref{lst:metrics20}) is to annotate metrics with metadata.
 
 \begin{lstlisting}[language=bash,
     caption={Metrics2.0 formatted metric},
@@ -60,8 +65,8 @@ meta: {
 \end{lstlisting}
 
 \subsubsection{Grafana}
-As the name might suggest Grafana uses the framework of Kibana (see \ref{kibana}),
-but intended to visualize metrics using the \gls{graphite} API,
+As the name might suggest Grafana uses the framework of Kibana (see Section~\ref{kibana}),
+but is intended to visualize metrics using the \gls{graphite} API,
 hence the name which combines the two words (\textbf{Gra}phite + \textbf{f} + Ki\textbf{bana}).
 Even though it originated as pure metric visualization tool, it allows to annotate syslog events stored in an Elasticsearch instance (due to its origins a simple task).
-Furthermore Grafana is able to query other data back-ends then Graphite, namely \gls{tsdb}\glsdesc{tsdb} and \gls{influxdb}\glsdesc{influxdb}.
+Furthermore Grafana is able to query other data back-ends than Graphite, namely \gls{tsdb}\glsdesc{tsdb} and \gls{influxdb}\glsdesc{influxdb}.

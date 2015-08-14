@@ -4,7 +4,6 @@ might be extracted in a subsequent step. NAGIOS for example provides performance
 
 In an ideal world the two would be separated pieces of information. A metric does not provide context
 but pure distilled performance information in the form of a value connected to a metric key and timestamp.
-
 A log event would be pure context without any performance information (e.g. 'Cronjob to sync video data started by user bob'). 
 
 In practice the producer of an event is most likely to cross this line, since the past favored an enriched (human readable/understandable) event over a
