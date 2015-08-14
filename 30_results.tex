@@ -1,5 +1,5 @@
 \section{Current Status of the Framework}
-By combining the presented technology stacks, the framework provides deep insights into the complete cluster stack.
+By combining the presented technology stacks, the framework provides deep insights intothe complete cluster stack.
 
 \subsection{Domain Modeling}
 By using a schema-less graph database approach, each domain can be modeled independently. Common entities are connected at any time after
@@ -34,7 +34,9 @@ Relationships combine two \lstinline{PORTS} and a \lstinline{CABLE} alongside wi
 Furthermore the routing information is added by providing a \lstinline{ROUTE_TO} relationship between a port and a host.
 
 \subsection{Holistic Inventory}
-The presented two models alone provide combined insight into the cluster. By connecting the HCA (within the InfiniBand model) to a host (within the \gls{slurm} model) the inventory allows inter-layer queries.
+The presented two models alone provide combined insight into the cluster.
+By connecting the HCA (within the InfiniBand model) to a host (within the \gls{slurm} model) the inventory
+allows inter-layer queries.
 
 \subsubsection{Job Placements}
 By showing the layout of a job within the \gls{ib} topology, an imbalanced job is easily detectable. \autoref{fig:hop_mis} shows an example in which the hop-count within a job differs.
@@ -42,8 +44,9 @@ By showing the layout of a job within the \gls{ib} topology, an imbalanced job i
     \includegraphics[width=.4\textwidth]{images/png/hop_missmatch.png}
     \caption{\label{fig:hop_mis}A job runs on three nodes (green). By using \lstinline{node3} instead of \lstinline{node4} the job could run evenly distributed on \lstinline{sw1}}
 \end{figure}
-A slightly more complex case would include different port-characteristics like speed, width.
-By caching information of the metrics system within the ports an even more sophisticated query might include error or performance counters.
+A slightly more complex case would include different port-characteristics like speed or width.
+By caching information of the metrics system within the graph database an even more sophisticated query
+might include error or performance counters.
 
 \subsubsection{InfiniBand Debugging}
 A common debug case within the InfiniBand network is to figure out if errors associated with a connection are caused by one of the ports or the cable itself.
@@ -59,11 +62,13 @@ By using an holistic inventory (as indicated in \autoref{fig:ib_graph}) the chan
 Determining inter-layer error triggers is an extremely hard task. If e.g. a specific job triggers an error within the interconnects one has to keep track of the job placement, the routes within the interconnect and
 the time to correlate metrics with this events.
 
+\autoref{fig:ib_perf} shows the performance metrics and the topology of the InifiniBand network,
+as a first overview. Hosts which have vanished from the network are going to be marked, so that such errors are easy to spot.
+
 \begin{figure}[!ht]
     \includegraphics[width=.4\textwidth]{images/png/ib_perf_s.png}
     \caption{\label{fig:ib_perf}Dashboard to visualize the topology (left) and the live traffic metrics within the InfiniBand fabric.}
 \end{figure}
-\autoref{fig:ib_perf} shows the performance metrics and the topology of the InifiniBand network, as a first overview. Host vanished from the network are colored red, so that such errors are easy to spot.
 
 \begin{figure}[!ht]
     \includegraphics[width=.4\textwidth]{images/png/combined_perf.png}
