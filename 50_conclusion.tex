@@ -1,7 +1,21 @@
 \section{Conclusion}
-Overall this approach provides a framework which allows rapid prototyping and integration of services into the scheme.
+Overall, this approach provides a framework which allows rapid prototyping and integration of services into the scheme.
 By leveraging the service discovery the configuration overhead is minimized and the software stack configures itself for the most part.
 
-While not tested at scale the system works nicely as an testing environment.
+\subsection{Modularity}
+Due to its modularity the framework is an optimal contender to integrate new services without interfering with existing parts.
+The microservice architecture implicitly forces well defined interactions in between the subparts, which allows to remove, add or duplicate functionality if needed.
+Incomming metrics for example might be mirrored and send to a backend system for evaluation without breaking existing queries.
 
-By being extremely modular the framework is able to adapt very quickly.
+\subsection{Graph Database Inventory}
+By using a schema-less graph database as inventory system, domains can be modeled separatley and connected as a subsequent step. This allows inter-layer
+correlation without the need to define a least common denominatior before hand.
+
+\subsection{Visualization}
+Kibana as the main log event dashboard and Grafana as the initiall performance metric visualization provide state-of-the, art flexible and intuitive
+access to the information stored in the complete infrastruture stack. By leveraging the inventory information dashboards are generated automatically to
+provide up to date views.
+
+\subsection{Performance}
+While not tested at scale the system works nicely as an testing environment. All subsystems are known to scale horizontally.
+The scaling of the libraries and scripts to integrate the different aspects are going to be the majority of the work to scale the complete system.
