@@ -1,19 +1,19 @@
 When implementing a microservice architecture the amount and scale of services can become a big burden when it comes to coupling the services.
 If hooking services together implies manual labor to put IP addresses into configuration files, the scalability of the system is going to be fairly limited.
-Instead, the system should advertise its capabilities and discover other services automatically.
+Instead, the system should broadcast its capabilities and discover other services automatically.
 
 The used implementation started as a set of bash scripts updating \gls{etcd} (\glsdesc{etcd}).
-This key/value store was used by \gls{skydns}, which exposes entries
+This key/value store was used by \gls{skydns} (\glsdesc{skydns}), which exposes entries
 over a DNS interface and thus made the coupling of distributed services relatively easy. To dynamically create configuration files a tool called
 \gls{confd} (\glsdesc{confd}) emerged, which queries \gls{etcd} and produces configuration files from templates if a watched value changes.
 
 A more holistic tool to deal with this set of functionality is \gls{consul} (\glsdesc{consul}). It combines a key/value store, service checks,
-a DNS interface and an RESTful API in one golang binary, which is easy to manage.
+a DNS interface and an RESTful API.
 
 \autoref{lst:srv_json} shows an example of a service, including attributes and checks to determine the state of the service based on the return code of the script (like NAGIOS does). 
 
 \begin{lstlisting}[language=bash,
-    caption={Service definition within \gls{consul}. If the keyword \texttt{open} is not found within the nmap output the service is set into a warning state.},
+    caption={Example of service definition within \gls{consul}. If the keyword \texttt{open} is not found within the nmap output the service is set into a warning state.},
     label={lst:srv_json}]
 {
   "service": {
@@ -37,14 +37,14 @@ $ dig SRV +short nginx.service.consul
 1 1 80 nginx.node.consul.
 \end{lstlisting}
 
-The ablility to reference a service via DNS is extremely helpful, since name resolving works system-wide. Instead of static IP address,
+The ablility to reference a service via DNS is extremely helpful, since name resolving works system-wide. Instead of a static IP address,
 a configuration file contains the \gls{fqdn} to describe a dependency to a different node. Furthermore the complete tooling
 is going to work as well; checking network connectivity is as simple as using \lstinline{ping} to resolve the \gls{fqdn}.
 
 \autoref{lst:curl_nginx} shows an example of the RESTful API to access information as JSON blobs.
 
 \begin{lstlisting}[language=bash,
-    caption={Exposure of services via RESTful API.},
+    caption={Example of service exposure via RESTful API.},
     label={lst:curl_nginx}]
 $ export URL=localhost:8500/v1/catalog/service
 $ curl -s $URL/nginx|python -m json.tool

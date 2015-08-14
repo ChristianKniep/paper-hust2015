@@ -1,15 +1,15 @@
 \section{Current Status of the Framework}
-By combining the presented technology stacks, the framework provides deep insights intothe complete cluster stack.
+By combining the presented technology stacks, the framework provides deep insights into the complete cluster stack.
 
 \subsection{Domain Modeling}
 By using a schema-less graph database approach, each domain can be modeled independently. Common entities are connected at any time after
 they are modeled.
 
 \subsubsection{Resource Scheduler}
-\gls{slurm} provides information about resource allocations: Which jobs was started where, by whom at what time? How long did it last? What was the outcome? and alike.
-The following \gls{slurm} entities are modeled as nodes within the graph.
+A resource scheduler, e.g. \gls{slurm}, provides information about resource allocations: Which jobs was started where, by whom,  at what time? How long did it last? What was the outcome? and alike.
+The following entities are modeled as nodes within the graph.
 \begin{itemize}
-    \item \textbf{host} The \gls{slurm} node, which represents a compute node within the cluster, identified by the host-name.
+    \item \textbf{host} compute node within the cluster, identified by the host-name.
     \item \textbf{partition} A logical group of nodes which represent the target of a job submission.
     \item \textbf{job} A demand for resources submitted by a user. Including metadata (user, submission/start/end time, job script, etc) and information about the state of the job. If resources are allocated, the job metadata is updated accordingly.
 \end{itemize}
@@ -50,7 +50,7 @@ might include error or performance counters.
 
 \subsubsection{InfiniBand Debugging}
 A common debug case within the InfiniBand network is to figure out if errors associated with a connection are caused by one of the ports or the cable itself.
-The approach to fix this error is to carefully unplug one connector of a given cable, connect it to a different switch-port and check the error counters of the just established connection.
+The typical approach to fix this error is to carefully unplug one connector of a given cable, connect it to a different switch-port and check the error counters of the just established connection.
 If the error sticks with the cable the opposite side of the cable has to be changed as well, to truly pin down the problem.
 
 This process is extremely error prone; an inventory to deal with an InfiniBand fabric barely exists. Therefore each step is manual labor with the risk of miscommunication between the on-site engineer changing the
