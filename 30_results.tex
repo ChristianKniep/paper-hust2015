@@ -60,8 +60,13 @@ Determining inter-layer error triggers is an extremely hard task. If e.g. a spec
 the time to correlate metrics with this events.
 
 \begin{figure}[!ht]
-    \includegraphics[width=.4\textwidth]{images/png/mon_cor.png}
-    \caption{\label{fig:job_correlation}Correlation of performance metrics and job events.}
+    \includegraphics[width=.4\textwidth]{images/png/ib_perf_s.png}
+    \caption{\label{fig:ib_perf}Dashboard to visualize the topology (left) and the live traffic metrics within the InfiniBand fabric.}
 \end{figure}
-\autoref{fig:job_correlation} shows the performance metrics annotated with job events, which provides an easy to spot correlation between the two domains.
+\autoref{fig:ib_perf} shows the performance metrics and the topology of the InifiniBand network, as a first overview. Host vanished from the network are colored red, so that such errors are easy to spot.
 
+\begin{figure}[!ht]
+    \includegraphics[width=.4\textwidth]{images/png/combined_perf.png}
+    \caption{\label{fig:cor_net}Performance metrics annotated with syslog events to correlate events and metrics.}
+\end{figure}
+Overlaying events and metrics allows to correlate both data sources. \autoref{fig:cor_net} shows an example of an event annotated to network metrics. The slight decrease in the upper most metric might indicate causality, which is hard to spot without the overlay.
