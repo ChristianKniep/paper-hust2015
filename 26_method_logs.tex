@@ -31,3 +31,16 @@ output {
 The power of these pipelines lies in the flexibility they provide. With a couple of lines (an example is shown in \autoref{lst:ls_cfg}) of
 configuration the logs are centralized and accessible via an intuitive dashboard like \gls{kibana}\glsdesc{kibana} as they were never before. Compared to plain text files on each server itself this changes the way logs are correlated with each other.
 
+\subsubsection{Elasticsearch}
+Storing text in a way that allows fast searches is a complex task. Elasticsearch tackles that by pre-processing data while it is consumed by its engine.
+This process is called indexing and it splits the information in various ways to speed up the search.
+Elasticsearch consumes JSON formated data and adds additional fields if needed.
+If the usecase indicates that ranges in steps of hundreds are often used, the date \lstinline{value=15235} might be also stored
+as \lstinline{hundred_val=15200}. This allows a binary check on the additional value instead of the evaluation of \lstinline{15200 <= 15235 and 15235 <= 15299}.
+
+By providing use-case driven pre-processing Elasticsearch is able to provide a powerful search engine for unstructured data. Log events are a primary example in which
+Elasticsearch provides fast an easy access to data.
+
+\subsubsection{Kibana}
+Kibana is an open-source javascript framework to visualize data stored in \gls{elasticsearch}. This open source project is backed by the company behind Elasticsearch and integrates
+seamlessly with this datastore.

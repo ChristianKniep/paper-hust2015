@@ -58,3 +58,8 @@ meta: {
     processed_by: statsd2
 }
 \end{lstlisting}
+
+\subsubsection{Grafana}
+As the name might suggest Grafana uses the framework of Kibana (see \ref{kibana}), but intended to visualize metrics using the \gls{graphite} API, hence the name which combines the two words.
+Even though it originated as pure metric visualization tool, it allows to annotate syslog events stored in an Elasticsearch instance (due to its origins a simple task).
+Furthermore Grafana is able to query other data back-ends then Graphite, namely \gls{tsdb}\glsdesc{tsdb} and \gls{influxdb}\glsdesc{influxdb}.
